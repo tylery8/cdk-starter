@@ -1,5 +1,6 @@
 # cdk-starter
-Starter code for a cdk project
+Starter code for a serverless cdk project:
+-Api Gateway -> Lambda Function -> Sqs queue -> Lambda Function -> Dynamodb
 
 Create a .env file with aws credentials:
 AWS_ACCOUNT_NUMBER=xxxxxxxxx
