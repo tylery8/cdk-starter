@@ -1,8 +1,9 @@
-# Welcome to your CDK TypeScript project!
+# cdk-starter
+Starter code for a cdk project
 
-This is a blank project for TypeScript development with CDK.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Create a .env file with aws credentials:
+AWS_ACCOUNT_NUMBER=xxxxxxxxx
+AWS_ACCOUNT_REGION=xxxxx
 
 ## Useful commands
 
