@@ -2,6 +2,8 @@
 Starter code for a serverless cdk project:
 -Api Gateway -> Lambda Function -> Sqs queue -> Lambda Function -> Dynamodb
 
+Example app simply sends a random number (0 - 100) all the way through to the table
+
 Create a .env file with aws credentials:
 AWS_ACCOUNT_NUMBER=xxxxxxxxx
 AWS_ACCOUNT_REGION=xxxxx
