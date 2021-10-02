@@ -1,10 +1,12 @@
 # cdk-starter
-Starter code for a serverless cdk project:
--Api Gateway -> Lambda Function -> Sqs queue -> Lambda Function -> Dynamodb
+## Starter code for a serverless cdk project:
 
-Create a .env file with aws credentials:
-AWS_ACCOUNT_NUMBER=xxxxxxxxx
-AWS_ACCOUNT_REGION=xxxxx
+* Api Gateway -> Lambda Function -> Sqs queue -> Lambda Function -> Dynamodb
+
+## Create a .env file with aws credentials:
+
+* AWS_ACCOUNT_NUMBER=xxxxxxxxx
+* AWS_ACCOUNT_REGION=xxxxx
 
 ## Useful commands
 
@@ -14,3 +16,4 @@ AWS_ACCOUNT_REGION=xxxxx
  * `cdk deploy`      deploy this stack to your default AWS account/region
  * `cdk diff`        compare deployed stack with current state
  * `cdk synth`       emits the synthesized CloudFormation template
+ * `npm test -- -u`  updates test snapshot

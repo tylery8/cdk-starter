@@ -1,0 +1,574 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`serverless stack 1`] = `
+Object {
+  "Outputs": Object {
+    "apiEndpoint9349E63C": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "apiC8550315",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "apiDeploymentStagedev96712F43",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "AssetParameters8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391ArtifactHashF715856F": Object {
+      "Description": "Artifact hash for asset \\"8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391\\"",
+      "Type": "String",
+    },
+    "AssetParameters8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391S3Bucket275FB7F6": Object {
+      "Description": "S3 bucket for asset \\"8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391\\"",
+      "Type": "String",
+    },
+    "AssetParameters8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391S3VersionKeyE6BD7F77": Object {
+      "Description": "S3 key for asset version \\"8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391\\"",
+      "Type": "String",
+    },
+    "AssetParametersad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54dArtifactHash30743201": Object {
+      "Description": "Artifact hash for asset \\"ad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54d\\"",
+      "Type": "String",
+    },
+    "AssetParametersad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54dS3Bucket82C38666": Object {
+      "Description": "S3 bucket for asset \\"ad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54d\\"",
+      "Type": "String",
+    },
+    "AssetParametersad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54dS3VersionKeyC58C0A82": Object {
+      "Description": "S3 key for asset version \\"ad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54d\\"",
+      "Type": "String",
+    },
+  },
+  "Resources": Object {
+    "apiAccount57E28B43": Object {
+      "DependsOn": Array [
+        "apiC8550315",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "apiCloudWatchRoleAC81D93E",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "apiC8550315": Object {
+      "Properties": Object {
+        "Name": "api",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "apiCloudWatchRoleAC81D93E": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "apiDeployment149F129404c102aeaf4a935842941638287c12a2": Object {
+      "DependsOn": Array [
+        "apiGETECF0BD67",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "apiC8550315",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "apiDeploymentStagedev96712F43": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "apiDeployment149F129404c102aeaf4a935842941638287c12a2",
+        },
+        "RestApiId": Object {
+          "Ref": "apiC8550315",
+        },
+        "StageName": "dev",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "apiGETApiPermissionMyTestStackapi725F2A80GETFC12C191": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "publishFunction0955FBF8",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "apiC8550315",
+              },
+              "/",
+              Object {
+                "Ref": "apiDeploymentStagedev96712F43",
+              },
+              "/GET/",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "apiGETApiPermissionTestMyTestStackapi725F2A80GETFE4B30B3": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "publishFunction0955FBF8",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "apiC8550315",
+              },
+              "/test-invoke-stage/GET/",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "apiGETECF0BD67": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "publishFunction0955FBF8",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Fn::GetAtt": Array [
+            "apiC8550315",
+            "RootResourceId",
+          ],
+        },
+        "RestApiId": Object {
+          "Ref": "apiC8550315",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "publishFunction0955FBF8": Object {
+      "DependsOn": Array [
+        "publishFunctionServiceRoleDefaultPolicy57B1EA19",
+        "publishFunctionServiceRole779A3536",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391S3Bucket275FB7F6",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391S3VersionKeyE6BD7F77",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters8dee0868f7cf9f3cf876ec572dab51f366b26e607ba4bd2d9ced281830a52391S3VersionKeyE6BD7F77",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "QUEUE_URL": Object {
+              "Ref": "queue276F7297",
+            },
+          },
+        },
+        "Handler": "lambda_function.lambda_handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "publishFunctionServiceRole779A3536",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "publishFunctionServiceRole779A3536": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "publishFunctionServiceRoleDefaultPolicy57B1EA19": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sqs:SendMessage",
+                "sqs:GetQueueAttributes",
+                "sqs:GetQueueUrl",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "queue276F7297",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "publishFunctionServiceRoleDefaultPolicy57B1EA19",
+        "Roles": Array [
+          Object {
+            "Ref": "publishFunctionServiceRole779A3536",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "queue276F7297": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "QueueName": "queue",
+      },
+      "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "subscribeFunction1FA97757": Object {
+      "DependsOn": Array [
+        "subscribeFunctionServiceRoleDefaultPolicyA1C1D645",
+        "subscribeFunctionServiceRoleE1E26A6E",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54dS3Bucket82C38666",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54dS3VersionKeyC58C0A82",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersad7e652f083350972bcbc0c27c20408f86d10b07a9f56eb497340542280bd54dS3VersionKeyC58C0A82",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "QUEUE_URL": Object {
+              "Ref": "queue276F7297",
+            },
+            "TABLE_NAME": Object {
+              "Ref": "table8235A42E",
+            },
+          },
+        },
+        "Handler": "lambda_function.lambda_handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "subscribeFunctionServiceRoleE1E26A6E",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "subscribeFunctionServiceRoleDefaultPolicyA1C1D645": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "queue276F7297",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "table8235A42E",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "subscribeFunctionServiceRoleDefaultPolicyA1C1D645",
+        "Roles": Array [
+          Object {
+            "Ref": "subscribeFunctionServiceRoleE1E26A6E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "subscribeFunctionServiceRoleE1E26A6E": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "subscribeFunctionSqsEventSourceMyTestStackqueueD162A242E9A0EDF9": Object {
+      "Properties": Object {
+        "EventSourceArn": Object {
+          "Fn::GetAtt": Array [
+            "queue276F7297",
+            "Arn",
+          ],
+        },
+        "FunctionName": Object {
+          "Ref": "subscribeFunction1FA97757",
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
+    },
+    "table8235A42E": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "id",
+            "AttributeType": "N",
+          },
+        ],
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": Object {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;
