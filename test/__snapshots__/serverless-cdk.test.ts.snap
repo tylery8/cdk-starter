@@ -253,6 +253,14 @@ Object {
       },
       "Type": "AWS::ApiGateway::Method",
     },
+    "deadletterqueueD1EEB012": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "QueueName": "dlq",
+      },
+      "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
+    },
     "publishFunction0955FBF8": Object {
       "DependsOn": Array [
         "publishFunctionServiceRoleDefaultPolicy57B1EA19",
@@ -380,6 +388,15 @@ Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
         "QueueName": "queue",
+        "RedrivePolicy": Object {
+          "deadLetterTargetArn": Object {
+            "Fn::GetAtt": Array [
+              "deadletterqueueD1EEB012",
+              "Arn",
+            ],
+          },
+          "maxReceiveCount": 3,
+        },
       },
       "Type": "AWS::SQS::Queue",
       "UpdateReplacePolicy": "Delete",

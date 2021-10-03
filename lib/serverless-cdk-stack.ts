@@ -9,8 +9,16 @@ export class ServerlessCdkStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    const deadLetterQueue = new sqs.Queue(this, 'dead-letter-queue', {
+      queueName: 'dlq'
+    });
+
     const queue = new sqs.Queue(this, 'queue', {
-      queueName: 'queue'
+      queueName: 'queue',
+      deadLetterQueue: {
+        queue: deadLetterQueue,
+        maxReceiveCount: 3
+      }
     });
 
     const table = new dynamodb.Table(this, 'table', {
